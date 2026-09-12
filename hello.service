@@ -1,0 +1,13 @@
+[Unit]
+Description=My Hello Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/hello-service
+
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
