@@ -1,13 +1,24 @@
 [Unit]
 Description=My Hello Service
 After=network.target
+Requires=network.target
 
 [Service]
-Type=simple
+Type=notify
 ExecStart=/usr/local/bin/hello-service
 
 Restart=on-failure
 RestartSec=2
+
+KillSignal=SIGTERM
+TimeoutStopSec=10
+
+WatchdogSec=5
+
+StandardOutput=journal
+StandardError=journal
+
+NoNewPrivileges=true
 
 [Install]
 WantedBy=multi-user.target
